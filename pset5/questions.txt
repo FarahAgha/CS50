@@ -1,0 +1,53 @@
+0.      BMP: The color numbers in BMP depends on the storage bit of each pixel. BMP has 1 bit(2 colors), 2 bit(4 colors), 4 bit(16 colors), 8 bit(256 colors), 16 bit(2^16 colors), 24 bit(2^24 colors), 32bit(2^32 colors).
+        GIF: 8 bits, 256 colors
+        JPEG & PNG: 24 bit i.e.16 million
+        
+1.      GIF supports animation
+
+2.      Lossy compression throws away some of the data in a file. Which is irreversible. 
+        Lossless uses an algorithm to compress a file that is reversible, therefore,  the quality of the file can move back and forth between the two states.  like zip and unzip file.
+
+
+3.      JPEG is a lossy compression algorithm
+
+4.      In a FAT file system the information in the address table is erased. It happen in 2 steps. In firt step filenames first character is modified to the signa that file is deleted (this can be recycled). 2nd The system moves FAT clusters to Free cluster, but the files data remains on the hard drive.
+
+5.      Delete files using a secure delete option. That replaces the section on disc with all zeroes or other random characters or its compliment.
+
+6.      The stdint.h is a header file that has Exact-width integer types which are guaranteed to have the same number N of bits across all implementations it also has define corresponding sets of macros. 
+  
+7.      It is for a fair utilization of a space as per data requirement.These are predefined type for specific number usage. e.g. 8, 16, 32 represent number of bits which tells us space occupied with the respective datatpye will be 1, 2, 3 bytes respectively. 
+
+8.      BYTE = 8 bit BYTE is an 8-bit unsigned value (range is 0-255)
+        DWORD = 32 bit DWORD is a 32-bit unsigned integer (range: 0 through 4294967295 decimal).
+        LONG = 32 bit LONG is a 32-bit signed integer, in twos-complement format (range: –2147483648 through 2147483647 decimal).
+        WORD = 16 bit WORD is a 16-bit unsigned integer (range: 0 through 65535 decimal)."
+
+9.      BM (0x4D42)  ie ASCII value of B and ASCII value of M to indicate bitmap. 
+
+10.     biSize specifies total size of the image (pixels and padding) in bytes of the bitmap file. biSize Specifies the size of the structure, in bytes. This size does not include the color table or the masks mentioned in the biClrUsed member. biClrUsed specifies the number of color indexes in the color table that are actually used by the bitmap.
+        
+11.     biHeight negative indicates that its origin is the upper left corner and bitmap is  top-down DIB, biCompression must be either BI_RGB or BI_BITFIELDS. Top-down DIBs cannot be compressed.
+
+12.     The biBitCount determines the number of bits that define each pixel and the maximum number of colors in the bitmap.biBitCount values can range between 1, 2, 4, 8, 16, 24 and 32.
+
+13.     fopen will return NULL if it not be able to allocate memory or not authorised to write or any other error that unable to return file pointer FILE* inptr.
+
+14.     copy.c is reading 1 element of the size structure(BITMAPFILEHEADER or BITMAPINFOHEADER or RGBTRIPLE) specified in the 2nd argument in fread.
+
+15.     Since the scanline must be a multiple of 4. therefore for biWidth 3 calculation should be
+        3 pixels * 3 bytes per pixel = 9 bytes. the next number multiple of 4 will be 12 so,
+        3 bytes are added to bring the scanline to 12 bytes.
+        The formula for the calculation is (4 - (bi.biWidth * sizeof(RGBTRIPLE)) % 4) % 4"
+        
+16.     Sets the position indicator associated with the stream to a new position (measured in bytes). 
+
+        int fseek ( FILE * stream, long int offset, int origin );
+
+        fseek acts as file position indicator where stream is the name of the file to seek
+        offset is the new position in bytes to move cursor
+        origion is from position which could be SEEK_SET(Beginning of file) or SEEK_CUR(Current position of the file pointer) or SEEK_END(End of file pointer)
+
+17.     SEEK_CUR is the Current position of the file pointer in fseek command
+
+18.     Milo Banana dun it.

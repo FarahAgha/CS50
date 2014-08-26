@@ -1,0 +1,84 @@
+ ***********let's get your submission on the leader board
+http://speller-leaderboard.freehostia.com/
+
+
+stat  ~cs50/pset6/d*/l*  |  sed  's/^/    /'
+./speller /home/cs50/pset6/texts/quote.txt (http://www.reddit.com/r/cs50/comments/25jomg/cs50_pset6/)
+
+
+
+
+---------------****** staff code *******------------------
+FILE* fp = fopen(dictionary, "r");
+
+if (!(fp))
+{
+    printf("Error opening file\n");
+    return false;
+}
+---------------*************------------------
+
+
+typedef struct node
+{
+    char word[LENGHT+1];
+    struct node*next;
+} node;
+
+node* hashtable[500];
+node* newnode = malloc( sizeof(node));
+fscanf(file ,"%s", newnode->word);
+
+---- Hash function ----
+takes a string returns index number of the bucket
+
+
+---- hash the word ----
+* newnode->word has the word from the dictionary
+* hashing newnode will give the index of the bucket 
+* insert into the linked list
+
+---- hash function -----
+int hash_it(char* needs_hashing)
+{
+    unsigned int hash = 0;
+    for (int i=0, n=strlen(needs_hashing); i<n; i++)
+        hash = (hash << 2) ^ needs_hashing[i];
+    return hash % HASHTABLE_SIZE;
+}
+
+As an example, if the word is BAT. I've shown the calculation in hex and in binary, because it's easier for me to understand how it works in binary. :)
+
+i = 0
+hash = 0x00
+needs_hashing[0] = 'B'  
+hash << 2 =  0000
+hash = 0x00 ^ 0x42  (0000 ^ 0100 0010)
+hash = 0x42  (0100 0010)
+
+i = 1
+hash = 0x42
+needs_hashing[1] = 'A'
+hash << 2 = 0100 0010 << 2 = 0001 0000 1000
+hash = 0x108 ^ 0x41  (0001 0000 1000 ^ 0100 0001)
+hash = 0x149  (0001 0100 1001)
+
+i = 2
+hash = 0x149
+needs_hashing[2] = 'T'
+hash << 2 = 0001 0100 1001 << 2 =  0000 0101 0010 0100
+hash = 0x524 ^ 0x54 (0000 0101 0010 0100 ^ 0101 0100)
+hash = 0x570    (0000 0101 0111 0000)
+
+return hash % HASHTABLE_SIZE  = 0x570
+
+
+--- load function
+    read in the word and store it in your char array. 
+    Then call the hash function to get the integer hash value. 
+    With that, you can then insert your nw pointer into the appropriate hash bucket. 
+---- check function
+    your check, you'll read in the word to be checked, 
+    run the hash function on that to find the right bucket, 
+    and then look there for the word.
+

@@ -1,0 +1,27 @@
+0.  pneumonoultramicroscopicsilicovolcanoconiosis is the longest (medical term) word in english language
+1.  getrusage() returns resource usage measures/statistics for RUSAGE_SELF(calling process), RUSAGE_CHILDREN(calling process of sub processes), RUSAGE_THREAD (calling thread)
+2.  16 members are in a variable of type struct rusage
+3.  Use the getrusage() function to get the reference point before and after the fuction run, which can filter out the unrelevent resource usage outside the process.
+4.  main goes by opening the file pointer fp provided as an argument and reading one word iteratively using fgetc. If the fgetc returns digit, the loop will consider it as not word, and while loop skip the character after the scanned one until the fgetc() return a space. When loop reads a space or other signs(except '), it consider it as end of word and adding Null char at the end of read word. incrementing word count when word found.
+    calculating resource usage data and observing it at each function(load unload size and check)  call
+    spell check starts with checking whether word exists in the dictionary using check function and updating misspelled word if it is not in dictionary
+5.  Use fscanf() might ends up with a string contains other signs, like comma, thus the result might not be listed in the dictionary for spelling check. 
+6.  The const qualifier is used to tell C that the variable value can not change after initialisation. Since the word for check and the dictionary for reference shall be consistant during the spell checking process, it would be safer to declare the arguments as const for those functions.
+7.  I use a hash table to load the dictionary,by generating index value seperating the first three letters into diferent linked list.
+8.  index = ((first *26 *26) + (second * 26) + third ) % HASHSIZE where first second and third are calculated as (word[char at word])-'a' and HASHSIZE=26*26*26
+    TIME IN load:         0.05
+    TIME IN check:        0.03
+    TIME IN size:         0.00
+    TIME IN unload:       0.00
+    TIME IN TOTAL:        0.09
+
+9.  index = (127 * index + word[i]) % HASHSIZE; where i looped in 0 to length of word and HASHSIZE=26*26*26
+    TIME IN load:         0.05
+    TIME IN check:        0.03
+    TIME IN size:         0.00
+    TIME IN unload:       0.00
+    TIME IN TOTAL:        0.08
+10. As I used hash table and ued linked list for chaining. I observed there are lots of NULL pointers in dictionary occuping unacessory space in hash table. 
+
+
+              
